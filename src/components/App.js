@@ -23,10 +23,21 @@ function App() {
     setQuestions(updatedQuestions);
   }
 
+  function handleUpdateQuestion(updatedQuestion) {
+    const updatedQuestions = questions.map((question) => {
+      if (question.id === updatedQuestion.id) {
+        return updatedQuestion;
+      } else {
+        return question;
+      }
+    });
+    setQuestions(updatedQuestions);
+  }
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm onAddQuestion={handleAddQuestion}/> : <QuestionList questions={questions} onDeleteQuestion={handleDeleteQuestion}/>}
+      {page === "Form" ? <QuestionForm onAddQuestion={handleAddQuestion}/> : <QuestionList questions={questions} onDeleteQuestion={handleDeleteQuestion} onUpdateQuestion={handleUpdateQuestion} />}
     </main>
   );
 }
